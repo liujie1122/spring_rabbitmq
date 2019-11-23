@@ -5,6 +5,7 @@ import com.liujie.config.RabbitConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class FanoutReceiver {
 
