@@ -34,14 +34,14 @@ public class Listener {
 //    }
 //
 //
-    @RabbitListener(queues = "spring_test3")//监听的路由：全部都监听
-    public void listen3(String msg){
-        System.out.println("listen3:"+msg);
-    }
-
-    @RabbitListener(queues = "simple_queue")//监听的路由：全部都监听
-    public void listen4(String msg){
-//        int i = 10/0;0
-        System.out.println("我是消费者listen4，接收到了消息内容是:"+msg);
-    }
+//    @RabbitListener(queues = "spring_test3")//监听的路由：全部都监听
+//    public void listen3(String msg){
+//        System.out.println("listen3:"+msg);
+//    }
+//
+//    @RabbitListener(queues = "simple_queue")//监听的路由：全部都监听
+//    public void listen4(String msg){
+////        int i = 10/0;0
+//        System.out.println("我是消费者listen4，接收到了消息内容是:"+msg);
+//    }
 }
