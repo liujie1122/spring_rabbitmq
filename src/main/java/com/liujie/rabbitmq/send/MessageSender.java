@@ -14,15 +14,15 @@ public class MessageSender {
     // 第一个参数：TopicExchange名字
     // 第二个参数：Route-Key
     // 第三个参数：要发送的内容
-    public void sendDelete(String string) {
+    public void sendDelete(Object string) {
         this.rabbitTemplate.convertAndSend(RabbitConfigDev.MESSAGE_EXCHANGE, "message.delete", string);
     }
 
-    public void sendInsert(String string) {
+    public void sendInsert(Object string) {
         this.rabbitTemplate.convertAndSend(RabbitConfigDev.MESSAGE_EXCHANGE, "message.insert", string);
     }
 
-    public void sendUpdate(String string) {
+    public void sendUpdate(Object string) {
         this.rabbitTemplate.convertAndSend(RabbitConfigDev.MESSAGE_EXCHANGE, "message.update", string);
     }
 }
