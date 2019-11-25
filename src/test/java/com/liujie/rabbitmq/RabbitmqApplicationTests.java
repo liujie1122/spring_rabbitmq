@@ -1,8 +1,7 @@
 package com.liujie.rabbitmq;
 
-import com.liujie.rabbitmq.send.DirectSender;
-import com.liujie.rabbitmq.send.FanoutSender;
-import com.liujie.rabbitmq.send.TopicSender;
+import com.liujie.rabbitmq.send.*;
+import org.junit.After;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ class RabbitmqApplicationTests {
 	void contextLoads() {
 	}
 
-	@AfterTestClass
+	@After
 	public void afterTest() throws InterruptedException {
 		System.out.println("Thread.sleep(10000);");
 		Thread.sleep(10000);
@@ -107,5 +106,61 @@ class RabbitmqApplicationTests {
 		String msg = "我在尝试用Spring整合RabbitMq发送消息,消息类型为direct";
 		directSender.send(msg);
 	}
+
+
+	@Autowired
+	private PersonSender personSender;
+	@Autowired
+	private MessageSender messageSender;
+	@Autowired
+	private YunSender yunSender;
+
+	/**
+	 * Fanout测试
+	 * @throws Exception
+	 */
+	@Test
+	public void testFanoutPersonSender() throws Exception {
+		String msg = "我在尝试用Spring整合RabbitMq发送消息,消息类型为Fanout.Delete";
+		personSender.sendDelete(msg);
+		msg = "我在尝试用Spring整合RabbitMq发送消息,消息类型为Fanout.Insert";
+		personSender.sendInsert(msg);
+		Thread.sleep(3000);
+	}
+
+
+
+
+
+	/**
+	 * TOPIC测试
+	 * @throws Exception
+	 */
+	@Test
+	public void testTopicMessageSender() throws Exception {
+		String msg = "我在尝试用Spring整合RabbitMq发送消息,消息类型为Topic:delete";
+		messageSender.sendDelete(msg);
+		msg = "我在尝试用Spring整合RabbitMq发送消息,消息类型为Topic:insert";
+		messageSender.sendInsert(msg);
+		msg = "我在尝试用Spring整合RabbitMq发送消息,消息类型为Topic:update";
+		messageSender.sendUpdate(msg);
+		Thread.sleep(3000);
+	}
+
+	/**
+	 * DIRECT测试
+	 * @throws Exception
+	 */
+	@Test
+	public void testDirectYunSender() throws Exception {
+		String msg = "我在尝试用Spring整合RabbitMq发送消息,消息类型为direct.delete";
+		yunSender.sendDelete(msg);
+		msg = "我在尝试用Spring整合RabbitMq发送消息,消息类型为direct.insert";
+		yunSender.sendInsert(msg);
+
+		Thread.sleep(3000);
+	}
+
+
 
 }
